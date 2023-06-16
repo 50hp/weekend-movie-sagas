@@ -10,6 +10,7 @@ function MovieList() {
 
     useEffect(() => {
         dispatch({ type: 'FETCH_MOVIES' });
+        dispatch({ type: 'SEARCH_MOVIES', payload:'aliens'});
     }, []);
 
     return (
