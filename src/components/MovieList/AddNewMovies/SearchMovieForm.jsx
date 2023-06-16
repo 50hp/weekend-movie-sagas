@@ -2,14 +2,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import DisplayMovie from './DisplayMovie/DisplayMovie.jsx';
 
-function AddNewMovie() {
-    
+function SearchMovieForm() {
+   
     const dispatch = useDispatch();
     const results = useSelector(store => store.movieSearch);
     const [input, setInput] = useState(String);
-
-
-    const handleSubmitSearch = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
         dispatch({type:"SEARCH_MOVIES", payload: input});
         console.log(results);
@@ -21,15 +19,14 @@ function AddNewMovie() {
     return(
 
         <div>
-            <form onSubmit={(event)=> handleSubmitSearch(event)}>
+            <form onSubmit={(event)=> handleSubmit(event)}>
                 <input type='text'
                        value={input}
                        onChange={(e) => handleChange(e.target.value)} />
                 <button type="submit">Search</button> 
             </form>
-
             <div>
-                     {results.map((movie, i) => (
+                 {results.map((movie, i) => (
                      <DisplayMovie key={i} movie={movie} />
                  ))}
             </div>
@@ -50,4 +47,4 @@ function AddNewMovie() {
 
 }
 
-export default AddNewMovie;
+export default SearchMovieForm;
