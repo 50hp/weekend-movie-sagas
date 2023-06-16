@@ -15,6 +15,7 @@ import axios from 'axios';
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
     yield takeLatest('SEARCH_MOVIES', searchMovies);
+    yield takeLatest('ADD_MOVIE', searchMovies);
 }
 
 function* fetchAllMovies() {
@@ -28,20 +29,27 @@ function* fetchAllMovies() {
         console.log('get all error');
     }
         
-}
+};
 
 function* searchMovies(action) {
 
     try {
         const query = action.payload;
-        console.log(query);
         const results = yield axios.get(`/api/newMovie/${query}`);
-        console.log('search results', results.data);
         yield put({ type: 'SEARCH_RESULTS', payload: results.data.Search});
     } catch {
         console.log('search get error');
     }
 }
+
+function* addMovie(action) {
+
+    try {
+        yield axios.post('/api/movie', action.payload);
+    } catch {
+        console.log('error with post request');
+    }
+};
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
