@@ -9,8 +9,8 @@ router.get('/:query', (req, res) => {
     const query = req.params.query;
     axios.get(`http://www.omdbapi.com/?apikey=${process.env.API_KEY}&s=${query}`)
         .then((response) => {
-        console.log(response);
-        res.sendStatus(200);
+        console.log(response.data);
+        res.send(response.data);
         }).catch (err => {
             res.sendStatus(500);
         });

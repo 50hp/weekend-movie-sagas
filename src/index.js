@@ -35,9 +35,9 @@ function* searchMovies(action) {
     try {
         const query = action.payload;
         console.log(query);
-        const results = yield axios.get(`/api/newMovies/${query}`);
+        const results = yield axios.get(`/api/newMovie/${query}`);
         console.log('search results', results.data);
-        yield put({ type: 'SEARCH_RESULTS', payload: results.data});
+        yield put({ type: 'SEARCH_RESULTS', payload: results.data.Search});
     } catch {
         console.log('search get error');
     }
