@@ -7,6 +7,7 @@ function AddNewMovie() {
     const dispatch = useDispatch();
     const results = useSelector(store => store.movieSearch);
     const [input, setInput] = useState(String);
+
     const handleSubmit = (event) => {
         event.preventDefault();
         dispatch({type:"SEARCH_MOVIES", payload: input});
