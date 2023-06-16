@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const movieRouter = require('./routes/movie.router.js');
 const newMovieRouter = require('./routes/newMovie.router.js');
 const genreRouter = require('./routes/genre.router.js');
+const imdbRouter = require('./routes/imdb.router.js');
+
 const port = process.env.PORT || 5000;
 
 /** ---------- MIDDLEWARE ---------- **/
@@ -13,6 +15,7 @@ app.use(express.static('build'));
 /** ---------- ROUTES ---------- **/
 app.use('/api/movie', movieRouter);
 app.use('/api/newMovie', newMovieRouter);
+app.use('/api/imdb', imdbRouter);
 app.use('/api/genre', genreRouter);
 
 /** ---------- START SERVER ---------- **/

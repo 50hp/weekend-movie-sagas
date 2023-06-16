@@ -6,15 +6,10 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 function DisplayMovie({movie}) {
 
     const dispatch = useDispatch();
-    // const history = useHistory();
+    const history = useHistory();
     const handleClick = () => {
-        dispatch({type: 'ADD_MOVIE',
-                  payload:{
-                      title: movie.Title,
-                      poster: movie.Poster,
-                      description:'placehodler',
-                      genre_id: 11,
-                  }});
+        dispatch({type: 'IMDB_GET', payload: movie.imdbID});
+        history.push('/form');
     }
 
 

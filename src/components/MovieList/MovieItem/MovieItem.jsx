@@ -10,6 +10,7 @@ function MovieItem({movie}) {
     const history = useHistory();
 
     const handleClick = () => {
+        console.log(movie);
         dispatch({type: "SET_DETAILS", payload: {movie: movie}});
         history.push("/details");
 

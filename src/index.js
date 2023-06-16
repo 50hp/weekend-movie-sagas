@@ -16,6 +16,7 @@ function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
     yield takeLatest('SEARCH_MOVIES', searchMovies);
     yield takeLatest('ADD_MOVIE', addMovie);
+    yield takeLatest('IMDB_GET', imDBquery);
 }
 
 function* fetchAllMovies() {
@@ -24,7 +25,8 @@ function* fetchAllMovies() {
         const movies = yield axios.get('/api/movie');
         console.log('get all:', movies.data);
         yield put({ type: 'SET_MOVIES', payload: movies.data });
-
+        const genres = yield axios.get('/api/genre');
+        yield put({type: 'SET_GENRES', payload: genres.data});
     } catch {
         console.log('get all error');
     }
@@ -51,6 +53,32 @@ function* addMovie(action) {
         console.log('error with post request');
     }
 };
+
+function* imDBquery(action) {
+
+    try {
+        console.log(action.payload);
+        const query = action.payload;
+        const results = yield axios.get(`/api/imdb/${query}`);
+        yield put({ type: 'MOVIE_TO_ADD', payload: results.data});
+    }catch{
+        console.log('error with imdb get');
+        }
+
+};
+
+function* getGenres() {
+
+    try {
+
+
+    } catch {
+
+
+    }
+}
+
+
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
@@ -93,6 +121,15 @@ const movieSearch = (state =[], action) => {
     }
 }
 
+const movieToAdd = (state = {}, action) => {
+    switch (action.type) {
+            case 'MOVIE_TO_ADD':
+                return action.payload;
+            default:
+                return state;
+        }
+}
+
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
@@ -100,6 +137,7 @@ const storeInstance = createStore(
         genres,
         currentDetails,
         movieSearch,
+        movieToAdd,
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
