@@ -6,7 +6,7 @@ import SearchMovieForm from '../MovieList/AddNewMovies/SearchMovieForm.jsx';
 import AddMovieMeta from '../MovieList/AddNewMovies/AddMovieMeta/AddMovieMeta';
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-
+//start on material UI integration
 function App() {
    
     const history = useHistory();
@@ -18,9 +18,6 @@ function App() {
         <nav>
         <Link to="/add">Add Movie</Link>
         <Link to="/">Home</Link>
-
-
-
         </nav>
 
         <Route path="/" exact>
