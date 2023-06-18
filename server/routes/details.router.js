@@ -8,15 +8,19 @@ let idToGet = 0;
 
 router.get('/:id', (req, res) => {
 
-    const idToGet = req.params.id;
+    if(req.params.id) {
+        idToGet = req.params.id;
+    }
+
+
+
     console.log(idToGet);
     const queryText = `
-        SELECT * FROM movies
-        JOIN movies_genres on movies.id = movies_genres.movie_id
-        JOIN genres on movies_genres.genre_id = genres.id
-        WHERE movies.id = 1;`;
+          SELECT *
+          FROM movies
+          WHERE movies.id = $1;`;
     
-    pool.query(queryText)
+    pool.query(queryText, [idToGet])
     .then((result) => {
         console.log(result.rows);
         res.send(result.rows);

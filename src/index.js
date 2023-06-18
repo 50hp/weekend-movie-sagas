@@ -73,7 +73,7 @@ function* setDetailsPage(action) {
     try {
         console.log(action.payload);
         const results = yield axios.get(`/api/details/${action.payload}`);
-        // yield put({type: "MOVIE_DETAILS", payload: results.data});
+        yield put({type: "SET_DETAILS", payload: results.data[0]});
 
     }catch{
         console.log('error with details get');
