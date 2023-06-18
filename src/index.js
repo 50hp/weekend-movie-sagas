@@ -21,7 +21,7 @@ function* rootSaga() {
 }
 
 function* fetchAllMovies() {
-    // get all movies from the DB
+    // get all movies from the DB 
     try {
         const movies = yield axios.get('/api/movie');
         console.log('get all:', movies.data);
@@ -34,6 +34,7 @@ function* fetchAllMovies() {
         
 };
 
+//sends query term to search OMDb api
 function* searchMovies(action) {
 
     try {
@@ -45,6 +46,7 @@ function* searchMovies(action) {
     }
 }
 
+//sends new movie information to server to be stored in the db
 function* addMovie(action) {
 
     try {
@@ -55,6 +57,7 @@ function* addMovie(action) {
     }
 };
 
+//Pulls the movie plot to be added to the description when movie is added
 function* imDBquery(action) {
 
     try {
@@ -68,6 +71,7 @@ function* imDBquery(action) {
 
 };
 
+//gets the needed information for the given datails page.
 function* setDetailsPage(action) {
 
     try {
@@ -105,7 +109,7 @@ const genres = (state = [], action) => {
             return state;
     }
 }
-
+//reducer for current details
 const currentDetails = (state = {}, action) => {
     switch (action.type) {
         case 'SET_DETAILS':
@@ -114,7 +118,7 @@ const currentDetails = (state = {}, action) => {
             return state;
     }
 }
-
+//reducer to store the response from OMDb
 const movieSearch = (state =[], action) => {
     switch (action.type) {
         case 'SEARCH_RESULTS':
@@ -123,7 +127,7 @@ const movieSearch = (state =[], action) => {
             return state;
     }
 }
-
+//stores the information of movie being added.
 const movieToAdd = (state = {}, action) => {
     switch (action.type) {
             case 'MOVIE_TO_ADD':

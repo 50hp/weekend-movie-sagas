@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import DisplayMovie from './DisplayMovie/DisplayMovie.jsx';
 
+//function to render searched for movies 
 function SearchMovieForm() {
    
     const dispatch = useDispatch();

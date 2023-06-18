@@ -4,6 +4,7 @@ const router = express.Router();
 require('dotenv').config();
 
 
+//router to query OMDb with a search query and send the response to the user
 router.get('/:query', (req, res) => {
     console.log(req.params.query);
     const query = req.params.query;

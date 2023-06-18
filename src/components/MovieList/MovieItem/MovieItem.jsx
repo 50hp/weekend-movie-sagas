@@ -9,6 +9,7 @@ function MovieItem({movie}) {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    //refactor button to use links instead of history
     const handleClick = () => {
         console.log(movie);
         history.push(`/details/${movie.id}`);

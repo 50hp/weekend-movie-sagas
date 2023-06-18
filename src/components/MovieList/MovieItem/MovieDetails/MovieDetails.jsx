@@ -11,9 +11,10 @@ function MovieDetails({}){
     const history = useHistory();
     const ID = useParams()
 
+
+    // refactor this button to use links instead
     const backButton = () => {
         history.push("/");
-
     }
    
 
@@ -39,7 +40,7 @@ function MovieDetails({}){
                     <p>{movie.description}</p>
                     <ul>
                     {genres.map((genre, i) => (
-                        <li>{genre.category}</li>
+                        <li key={i}>{genre.category}</li>
                     ))}
                     </ul>
                     <button onClick={backButton}>Home</button>

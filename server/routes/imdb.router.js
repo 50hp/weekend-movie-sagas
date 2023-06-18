@@ -4,7 +4,7 @@ const router = express.Router();
 require('dotenv').config();
 
 
-
+//router to get full movie details from OMDb
 router.get('/:query', (req, res) => {
 
     console.log(req.params.query);
