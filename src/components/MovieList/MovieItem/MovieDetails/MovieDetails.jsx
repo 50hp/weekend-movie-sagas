@@ -10,6 +10,7 @@ function MovieDetails({}){
     const dispatch = useDispatch(); 
     const history = useHistory();
     const ID = useParams()
+
     const backButton = () => {
         history.push("/");
 
@@ -18,7 +19,7 @@ function MovieDetails({}){
 
     useEffect(() => {
         console.log(ID); 
-        dispatch({type:"GET_DETAILS", payload: ID.id})
+        dispatch({type:"GET_DETAILS", payload: ID.id});
     }, []);
         
     console.log('details.length', movie.length, movie);
@@ -36,6 +37,11 @@ function MovieDetails({}){
                     <img src={movie.poster}/>
                     <h1>{movie.title}</h1>
                     <p>{movie.description}</p>
+                    <ul>
+                    {genres.map((genre, i) => (
+                        <li>{genre.category}</li>
+                    ))}
+                    </ul>
                     <button onClick={backButton}>Home</button>
                 </div>                    
 
