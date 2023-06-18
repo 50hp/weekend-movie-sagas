@@ -74,7 +74,8 @@ function* setDetailsPage(action) {
         console.log(action.payload);
         const results = yield axios.get(`/api/details/${action.payload}`);
         yield put({type: "SET_DETAILS", payload: results.data[0]});
-
+        const genres = yield axios.get(`/api/genre/${action.payload}`);
+        yield put({type: "SET_GENRES", payload: genres.data});
     }catch{
         console.log('error with details get');
     }

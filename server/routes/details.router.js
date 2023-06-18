@@ -3,14 +3,9 @@ const router = express.Router();
 const pool = require('../modules/pool')
 
 
-let idToGet = 0;
-
-
 router.get('/:id', (req, res) => {
 
-    if(req.params.id) {
-        idToGet = req.params.id;
-    }
+     const idToGet = req.params.id;
 
 
 
