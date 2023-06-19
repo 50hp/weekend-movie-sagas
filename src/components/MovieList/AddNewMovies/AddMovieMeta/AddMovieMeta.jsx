@@ -8,7 +8,9 @@ function AddMovieMeta(){
     const results = useSelector(store => store.movieToAdd);
     const genres = useSelector(store => store.genres);
     const history = useHistory();
-  
+// add a new reducer to hande list of genres avalible in db since details is now
+    // using the genres reducer.
+// change handleSubmit to use link instead  
     const handleSubmit = () => {
          
         dispatch({type:"ADD_MOVIE", payload: {
